@@ -135,6 +135,6 @@ namespace ProjectRoulette
 			AssetDatabase.SaveAssets();
 			AssetDatabase.Refresh();
 		}
-	}
 	#endif
+	}
 }
