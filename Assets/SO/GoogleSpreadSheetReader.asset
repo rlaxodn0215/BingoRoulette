@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b8fa2b3a01900439d2adf0baf46fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c76b96fd07186e4a957fa37845c6325, type: 3}
   m_Name: GoogleSpreadSheetReader
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectRoulette.GoogleSpreadSheetManager
-  SheetName: Item
+  m_EditorClassIdentifier: Assembly-CSharp::BingoRoulette.GoogleSpreadSheetReader
+  SheetName: Prefab
   newClasses:
-  - SymbolData
-  - PatternData
-  - ItemData
+  - SoundData
+  - PrefabData

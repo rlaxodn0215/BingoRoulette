@@ -26,8 +26,8 @@
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
-# Ignore GSTU_Config
-/[Aa]ssets/Google Sheets to Unity/Resources
+# Ignore Google Sheets to Unity
+/[Aa]ssets/Google Sheets to Unity
 
 # Ignore MyAssets
 /[Aa]ssets/MyAssets

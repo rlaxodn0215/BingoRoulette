@@ -4,16 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace ProjectPang
+namespace BingoRoulette
 {
 	public class UISettingsPopup : MonoBehaviour
 	{
-		[Header("Language Settings")] [SerializeField]
-		private TMP_Dropdown _languageDropdown;
-
-		[Header("Display Settings")] [SerializeField]
-		private TMP_Dropdown _displayResolutionDropdown;
-
+		[Header("Display Settings")] 
+		[SerializeField] private TMP_Dropdown _displayResolutionDropdown;
 		[SerializeField] private TMP_Dropdown _windowTypeDropdown;
 
 		[Header("Audio Settings")]
@@ -28,35 +24,9 @@ namespace ProjectPang
 
 		private void Start()
 		{
-			InitLanguage();
-			InitWindowType();
 			InitResolutions();
+			InitWindowType();
 			InitVolumeSliders();
-		}
-
-		private void InitLanguage()
-		{
-			_languageDropdown.ClearOptions();
-
-			var languages = Managers.Localization.GetLanguageList();
-			_languageDropdown.AddOptions(languages);
-
-			// 중복 방지
-			_languageDropdown.onValueChanged.RemoveListener(OnLanguageChanged);
-
-			// 기본 언어 설정
-			_languageDropdown.value = 0;
-			_languageDropdown.RefreshShownValue();
-
-			OnLanguageChanged(0); // 기본 언어 적용
-
-			_languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
-		}
-
-		private void OnLanguageChanged(int index)
-		{
-			var selectedLang = _languageDropdown.options[index].text;
-			Managers.Localization.ChangeLanguage(selectedLang);
 		}
 
 		private void InitResolutions()
@@ -162,19 +132,19 @@ namespace ProjectPang
 
 		private void ChangeMasterVolume(float volume)
 		{
-			Managers.Sound.SetVolume(EAudioMixerType.Master, volume);
+			SoundManager.Instance.SetVolume(ESoundType.Master, volume);
 			_maseterVolumeText.text = $"{(int)(volume * 100f)} / 100";
 		}
-
+		
 		private void ChangeBGMVolume(float volume)
 		{
-			Managers.Sound.SetVolume(EAudioMixerType.BGM, volume);
+			SoundManager.Instance.SetVolume(ESoundType.BGM, volume);
 			_bgmVolumeText.text = $"{(int)(volume * 100f)} / 100";
 		}
-
+		
 		private void ChangeSFXVolume(float volume)
 		{
-			Managers.Sound.SetVolume(EAudioMixerType.SFX, volume);
+			SoundManager.Instance.SetVolume(ESoundType.BGM, volume);
 			_sfxVolumeText.text = $"{(int)(volume * 100f)} / 100";
 		}
 	}

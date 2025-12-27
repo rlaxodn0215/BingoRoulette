@@ -3,16 +3,18 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace ProjectPang
+namespace BingoRoulette
 {
 	[CreateAssetMenu(fileName = "SoundData", menuName = "Scriptable Objects/SoundData")]
 	public class SoundData : SOBase
 	{
 		public int Key;
+		public ESoundType SoundType;
 		public bool Loop;
+		public float CoolTime;
 		public float Volume;
 		public float Pitch;
-		public string AudioFilePath;
+		public string AssetPath;
 
 	#if UNITY_EDITOR
 		public override void UpdateData(List<string> dataList)
@@ -35,11 +37,11 @@ namespace ProjectPang
 			{
 				try
 				{
-					var targetType = typeof(bool);
+					var targetType = typeof(ESoundType);
 					if (targetType.IsEnum)
-						Loop = (bool)Enum.Parse(targetType, dataList[1]);
+						SoundType = (ESoundType)Enum.Parse(targetType, dataList[1]);
 					else
-						Loop = (bool)Convert.ChangeType(dataList[1], targetType);
+						SoundType = (ESoundType)Convert.ChangeType(dataList[1], targetType);
 				}
 				catch { }
 			}
@@ -47,11 +49,11 @@ namespace ProjectPang
 			{
 				try
 				{
-					var targetType = typeof(float);
+					var targetType = typeof(bool);
 					if (targetType.IsEnum)
-						Volume = (float)Enum.Parse(targetType, dataList[2]);
+						Loop = (bool)Enum.Parse(targetType, dataList[2]);
 					else
-						Volume = (float)Convert.ChangeType(dataList[2], targetType);
+						Loop = (bool)Convert.ChangeType(dataList[2], targetType);
 				}
 				catch { }
 			}
@@ -61,9 +63,9 @@ namespace ProjectPang
 				{
 					var targetType = typeof(float);
 					if (targetType.IsEnum)
-						Pitch = (float)Enum.Parse(targetType, dataList[3]);
+						CoolTime = (float)Enum.Parse(targetType, dataList[3]);
 					else
-						Pitch = (float)Convert.ChangeType(dataList[3], targetType);
+						CoolTime = (float)Convert.ChangeType(dataList[3], targetType);
 				}
 				catch { }
 			}
@@ -71,11 +73,35 @@ namespace ProjectPang
 			{
 				try
 				{
+					var targetType = typeof(float);
+					if (targetType.IsEnum)
+						Volume = (float)Enum.Parse(targetType, dataList[4]);
+					else
+						Volume = (float)Convert.ChangeType(dataList[4], targetType);
+				}
+				catch { }
+			}
+			if (dataList.Count > 5 && !string.IsNullOrEmpty(dataList[5]))
+			{
+				try
+				{
+					var targetType = typeof(float);
+					if (targetType.IsEnum)
+						Pitch = (float)Enum.Parse(targetType, dataList[5]);
+					else
+						Pitch = (float)Convert.ChangeType(dataList[5], targetType);
+				}
+				catch { }
+			}
+			if (dataList.Count > 6 && !string.IsNullOrEmpty(dataList[6]))
+			{
+				try
+				{
 					var targetType = typeof(string);
 					if (targetType.IsEnum)
-						AudioFilePath = (string)Enum.Parse(targetType, dataList[4]);
+						AssetPath = (string)Enum.Parse(targetType, dataList[6]);
 					else
-						AudioFilePath = (string)Convert.ChangeType(dataList[4], targetType);
+						AssetPath = (string)Convert.ChangeType(dataList[6], targetType);
 				}
 				catch { }
 			}

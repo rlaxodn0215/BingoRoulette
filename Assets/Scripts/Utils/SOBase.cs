@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace ProjectPang
+namespace BingoRoulette
 {
 	public class SOBase : ScriptableObject
 	{
@@ -52,7 +52,7 @@ namespace ProjectPang
 			sb.AppendLine("using System.Collections.Generic;");
 			sb.AppendLine("using UnityEditor;");
 			sb.AppendLine();
-			sb.AppendLine("namespace ProjectPang");
+			sb.AppendLine("namespace BingoRoulette");
 			sb.AppendLine("{");
 			sb.AppendLine(
 				$"	[CreateAssetMenu(fileName = \"{className}\", menuName = \"Scriptable Objects/{className}\")]");

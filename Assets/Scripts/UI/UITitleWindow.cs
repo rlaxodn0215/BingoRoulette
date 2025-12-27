@@ -1,43 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-namespace ProjectPang
+namespace BingoRoulette
 {
-	public class UITitleWindow : UIBase
+	public class UITitleWindow : MonoBehaviour
 	{
 		[Header("Buttons")] 
 		[SerializeField] private Button _startButton;
-		[SerializeField] private Button _customButton;
 		[SerializeField] private Button _settingButton;
 		[SerializeField] private Button _exitButton;
 
 		[Header("Popups")] 
-		[SerializeField] private UIMapSelectPopup _mapSelectPopup;
-		[SerializeField] private UICustomPopup _customPopup;
-		[SerializeField] private UISettingsPopup _settingsPopup;
+		[SerializeField] private GameObject _settingsPopup;
+
+		[Header("GameUI")] 
+		[SerializeField] private GameObject _gameUIObject;
 
 		private void Start()
 		{
 			_startButton.onClick.AddListener(OnStartButton);
-			_customButton.onClick.AddListener(OnCustomButton);
 			_settingButton.onClick.AddListener(OnSettingButton);
 			_exitButton.onClick.AddListener(OnExitButton);
 		}
 
 		private void OnStartButton()
 		{
-			_mapSelectPopup.gameObject.SetActive(true);
-		}
-
-		private void OnCustomButton()
-		{
-			_customPopup.gameObject.SetActive(true);
+			_gameUIObject.SetActive(true);
+			gameObject.SetActive(false);
 		}
 
 		private void OnSettingButton()
 		{
-			_settingsPopup.gameObject.SetActive(true);
+			_settingsPopup.SetActive(true);
 		}
 
 		private void OnExitButton()
