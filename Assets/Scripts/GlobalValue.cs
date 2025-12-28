@@ -21,6 +21,6 @@ namespace BingoRoulette
 		public static readonly int SlotColCount = 5; // 룰렛 가로 수
 
 		// Probability
-		public static readonly int ProbabilityMaxCount = 1000; // 확률 계산 기준 정수
+		public static readonly int ProbabilityMaxCount = 100000; // 확률 계산 기준 정수
 	}
 }

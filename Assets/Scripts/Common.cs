@@ -21,7 +21,6 @@ namespace BingoRoulette
 
 	public enum ESlotColor
 	{
-		Gray,
 		Berry,
 		Blue,
 		Cyan,
@@ -35,7 +34,8 @@ namespace BingoRoulette
 		Teal,
 		Violet,
 		Yellow,
-		Max
+		Max,
+		Gray
 	}
 
 	public enum ESlotState

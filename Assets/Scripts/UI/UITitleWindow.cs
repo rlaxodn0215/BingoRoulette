@@ -14,7 +14,7 @@ namespace BingoRoulette
 		[SerializeField] private GameObject _settingsPopup;
 
 		[Header("GameUI")] 
-		[SerializeField] private GameObject _gameUIObject;
+		[SerializeField] private UIGameWindow _uiGameWindow;
 
 		private void Start()
 		{
@@ -25,7 +25,8 @@ namespace BingoRoulette
 
 		private void OnStartButton()
 		{
-			_gameUIObject.SetActive(true);
+			_uiGameWindow.ResetGame();
+			_uiGameWindow.gameObject.SetActive(true);
 			gameObject.SetActive(false);
 		}
 

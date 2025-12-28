@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -11,6 +12,8 @@ namespace BingoRoulette
 		[SerializeField] private GameObject _slotIcon;
 		[SerializeField] private Button _normalSlotButton;
 		[SerializeField] private GameObject _deathSlot;
+
+		public TMP_Text ProbalbilityScoreText;
 
 		public ESlotState SlotState = ESlotState.None;
 
