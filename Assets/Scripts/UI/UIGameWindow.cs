@@ -79,6 +79,7 @@ namespace BingoRoulette
 			if (idx == deadSlotIndex)
 			{
 				ChangeLife(_life - 1);
+				SoundManager.Instance.Play(ESound.DeathSlotClick);
 			}
 			else
 			{
@@ -99,6 +100,7 @@ namespace BingoRoulette
 					}
 
 					ChangeBingoCount(_bingoCount + (bingoIndices.Count + 4) / 5);
+					SoundManager.Instance.Play(ESound.Bingo);
 				}
 				else
 				{
@@ -159,6 +161,7 @@ namespace BingoRoulette
 			//Debug.Log("Game Over");
 			_gameOverPopup.gameObject.SetActive(true);
 			_gameOverPopup.SetPoint(_point);
+			SoundManager.Instance.Play(ESound.GameOver);
 		}
 	}
 }

@@ -13,12 +13,21 @@ namespace BingoRoulette
 		[SerializeField] private TMP_Dropdown _windowTypeDropdown;
 
 		[Header("Audio Settings")]
+		[Header("Master Volume")]
 		[SerializeField] private Slider _masterVolumeSlider;
 		[SerializeField] private TMP_Text _maseterVolumeText;
+		
+		[Header("BGM Volume")]
 		[SerializeField] private Slider _bgmVolumeSlider;
 		[SerializeField] private TMP_Text _bgmVolumeText;
+		
+		[Header("SFX Volume")]
 		[SerializeField] private Slider _sfxVolumeSlider;
 		[SerializeField] private TMP_Text _sfxVolumeText;
+		
+		[Header("UI Volume")]
+		[SerializeField] private Slider _uiVolumeSlider;
+		[SerializeField] private TMP_Text _uiVolumeText;
 
 		private Resolution[] _displayResolutions;
 
@@ -128,6 +137,7 @@ namespace BingoRoulette
 			_masterVolumeSlider.onValueChanged.AddListener(ChangeMasterVolume);
 			_bgmVolumeSlider.onValueChanged.AddListener(ChangeBGMVolume);
 			_sfxVolumeSlider.onValueChanged.AddListener(ChangeSFXVolume);
+			_uiVolumeSlider.onValueChanged.AddListener(ChangeUIVolume);
 		}
 
 		private void ChangeMasterVolume(float volume)
@@ -144,8 +154,14 @@ namespace BingoRoulette
 		
 		private void ChangeSFXVolume(float volume)
 		{
-			SoundManager.Instance.SetVolume(ESoundType.BGM, volume);
+			SoundManager.Instance.SetVolume(ESoundType.SFX, volume);
 			_sfxVolumeText.text = $"{(int)(volume * 100f)} / 100";
+		}
+		
+		private void ChangeUIVolume(float volume)
+		{
+			SoundManager.Instance.SetVolume(ESoundType.UI, volume);
+			_uiVolumeText.text = $"{(int)(volume * 100f)} / 100";
 		}
 	}
 }

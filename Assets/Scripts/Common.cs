@@ -7,7 +7,8 @@ namespace BingoRoulette
 		BGM_1,
 		ButtonClick,
 		SlotClick,
-		BingoSFX,
+		DeathSlotClick,
+		Bingo,
 		GameOver
 	}
 	

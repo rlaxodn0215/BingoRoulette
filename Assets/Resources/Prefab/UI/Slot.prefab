@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 671575206388470882}
   - component: {fileID: 3827507862725209895}
   - component: {fileID: 4775914549729490260}
+  - component: {fileID: 6489223536485051775}
   m_Layer: 5
   m_Name: NormalSlot
   m_TagString: Untagged
@@ -761,6 +762,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6489223536485051775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128855262616560775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3698dbc86fce1e44396fc9a722b71c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BingoRoulette.UIButtonSound
+  _clickSound: 2
 --- !u!1 &7148722782066044712
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +937,7 @@ GameObject:
   - component: {fileID: 4818967059597324194}
   - component: {fileID: 3394447880602183470}
   - component: {fileID: 2501514498350888869}
+  - component: {fileID: 4937082457691114974}
   m_Layer: 5
   m_Name: DeathSlot
   m_TagString: Untagged
@@ -1026,3 +1041,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4937082457691114974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469512311661501536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3698dbc86fce1e44396fc9a722b71c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BingoRoulette.UIButtonSound
+  _clickSound: 3
