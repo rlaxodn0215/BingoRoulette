@@ -78,7 +78,7 @@ namespace BingoRoulette
 			var modes = new List<string>()
 			{
 				"Fullscreen",
-				"Fullscreen Window",
+				/*"Fullscreen Window",*/
 				"Windowed"
 			};
 
