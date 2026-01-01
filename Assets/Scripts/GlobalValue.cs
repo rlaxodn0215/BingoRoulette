@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BingoRoulette
 {
 	public static class GlobalValue
@@ -22,5 +24,21 @@ namespace BingoRoulette
 
 		// Probability
 		public static readonly int ProbabilityMaxCount = 100000; // 확률 계산 기준 정수
+		
+		// Steam Achievement
+		public static readonly Dictionary<int, EAchievement> PointAchievements =
+			new Dictionary<int, EAchievement>
+			{
+				{ 100,  EAchievement.GET_100_POINTS },
+				{ 200,  EAchievement.GET_200_POINTS },
+				{ 300,  EAchievement.GET_300_POINTS },
+				{ 400,  EAchievement.GET_400_POINTS },
+				{ 500,  EAchievement.GET_500_POINTS },
+				{ 600,  EAchievement.GET_600_POINTS },
+				{ 700,  EAchievement.GET_700_POINTS },
+				{ 800,  EAchievement.GET_800_POINTS },
+				{ 900,  EAchievement.GET_900_POINTS },
+				{ 1000, EAchievement.GET_1000_POINTS },
+			};
 	}
 }
