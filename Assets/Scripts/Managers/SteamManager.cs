@@ -48,6 +48,7 @@ namespace BingoRoulette
 
 			InitLeaderboards();
 		}
+
 		private void Update()
 		{
 			if (IsInitialized)
@@ -72,20 +73,25 @@ namespace BingoRoulette
 		{
 			_leaderboards = new Dictionary<ELeaderboard, LeaderboardInfo>
 			{
-				{ ELeaderboard.LB_SCORE_BEST,     new LeaderboardInfo(nameof(ELeaderboard.LB_SCORE_BEST)) },
+				{ ELeaderboard.LB_SCORE_BEST, new LeaderboardInfo(nameof(ELeaderboard.LB_SCORE_BEST)) },
 				{ ELeaderboard.LB_TRY_COUNT_BEST, new LeaderboardInfo(nameof(ELeaderboard.LB_TRY_COUNT_BEST)) },
-				{ ELeaderboard.LB_BINGO_COUNT_BEST,new LeaderboardInfo(nameof(ELeaderboard.LB_BINGO_COUNT_BEST)) }
+				{ ELeaderboard.LB_BINGO_COUNT_BEST, new LeaderboardInfo(nameof(ELeaderboard.LB_BINGO_COUNT_BEST)) }
 			};
 
 			_findResults = new Dictionary<ELeaderboard, CallResult<LeaderboardFindResult_t>>();
 			_uploadResults = new Dictionary<ELeaderboard, CallResult<LeaderboardScoreUploaded_t>>();
 
-			foreach (var pair in _leaderboards)
+			//foreach (var pair in _leaderboards)
 			{
-				var type = pair.Key;
-				var info = pair.Value;
+				// var type = pair.Key;
+				// var info = pair.Value;
 
-				var callResult = CallResult<LeaderboardFindResult_t>.Create((result, ioFail) => OnFindLeaderboard(type, result, ioFail));
+				var type = ELeaderboard.LB_SCORE_BEST;
+				var info = _leaderboards[type];
+
+				var callResult =
+					CallResult<LeaderboardFindResult_t>.Create((result, ioFail) =>
+						OnFindLeaderboard(type, result, ioFail));
 
 				_findResults[type] = callResult;
 
@@ -139,7 +145,7 @@ namespace BingoRoulette
 			{
 				if (newValue <= value) return;
 			}
-			
+
 			SteamUserStats.SetStat(statKey.ToString(), newValue);
 			SteamUserStats.StoreStats();
 
@@ -182,19 +188,24 @@ namespace BingoRoulette
 				return;
 
 			var uploadResult =
-				CallResult<LeaderboardScoreUploaded_t>.Create(
-					(result, ioFail) =>
+				CallResult<LeaderboardScoreUploaded_t>.Create((result, ioFail) =>
+				{
+					if (ioFail)
 					{
-						if (ioFail)
-						{
-							Debug.LogError($"[Steam] 리더보드 업로드 실패: {type}");
-							return;
-						}
+						Debug.LogError($"[Steam] 리더보드 업로드 실패: {type}");
+						return;
+					}
 
-						Debug.Log($"[Steam] 리더보드 업로드 완료: {type} / {value}");
-					});
+					Debug.Log($"[Steam] 리더보드 업로드 완료: {type} / {value}");
+				});
 
 			_uploadResults[type] = uploadResult;
+
+			var uploadTime = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+			var details = new int[]
+			{
+				uploadTime
+			};
 
 			var handle =
 				SteamUserStats.UploadLeaderboardScore(
@@ -202,8 +213,8 @@ namespace BingoRoulette
 					ELeaderboardUploadScoreMethod
 						.k_ELeaderboardUploadScoreMethodKeepBest,
 					value,
-					null,
-					0
+					details,
+					details.Length
 				);
 
 			uploadResult.Set(handle);

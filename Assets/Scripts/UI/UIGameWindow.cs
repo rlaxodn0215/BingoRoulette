@@ -23,8 +23,8 @@ namespace BingoRoulette
 		private ulong _point = 0;
 		private int _life = 3;
 		private int _bingoCount = 0;
-		private int _totalTryCount = 0;
-		private int _totalBingoCount = 0;
+		// private int _totalTryCount = 0;
+		// private int _totalBingoCount = 0;
 
 		private void Start()
 		{
@@ -59,18 +59,18 @@ namespace BingoRoulette
 			_slotBoardController = new SlotBoardController();
 		}
 
-		private void OnApplicationQuit()
-		{
-			SteamManager.Instance.UpdateStat(EStat.STAT_TRY_COUNT, _totalTryCount, true);
-			SteamManager.Instance.UpdateStat(EStat.STAT_BINGO_COUNT, _totalBingoCount, true);
-		}
+		// private void OnApplicationQuit()
+		// {
+		// 	SteamManager.Instance.UpdateStat(EStat.STAT_TRY_COUNT, _totalTryCount, true);
+		// 	SteamManager.Instance.UpdateStat(EStat.STAT_BINGO_COUNT, _totalBingoCount, true);
+		// }
 
 		public void ResetGame()
 		{
 			ChangePoint(0);
 			ChangeLife(3);
 			ChangeBingoCount(0);
-			_totalTryCount++;
+			//_totalTryCount++;
 			_emptySlotIndices = Enumerable.Range(0, 25).ToList();
 			_slots.ForEach(slot => slot.SetNormalSlotActive(false));
 		}
@@ -122,7 +122,7 @@ namespace BingoRoulette
 
 					var newBingoCount = (bingoIndices.Count + 4) / 5;
 					ChangeBingoCount(_bingoCount + newBingoCount);
-					_totalBingoCount += newBingoCount;
+					//_totalBingoCount += newBingoCount;
 					SoundManager.Instance.Play(ESound.Bingo);
 					FeelManager.Instance.Play(EFeel.Bingo, bingoIndices);
 				}

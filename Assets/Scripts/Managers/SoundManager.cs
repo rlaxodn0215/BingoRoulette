@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 namespace BingoRoulette
 {
@@ -15,6 +16,8 @@ namespace BingoRoulette
 		[SerializeField] private AudioSource _uiPlayer;
 
 		[Header("SFX Pool")] [SerializeField] private int _sfxPoolSize = 10;
+
+		public Dictionary<ESoundType, float> SoundVolume { get; private set; }= new();
 
 		private readonly Dictionary<ESound, SoundData> _soundData = new();
 		private readonly Dictionary<ESound, AudioClip> _clipCache = new();
@@ -187,6 +190,7 @@ namespace BingoRoulette
 			foreach (ESoundType type in Enum.GetValues(typeof(ESoundType)))
 			{
 				var volume = PlayerPrefs.GetFloat(type.ToString(), 1f);
+				SoundVolume[type] = volume;
 				SetVolume(type, volume);
 			}
 		}

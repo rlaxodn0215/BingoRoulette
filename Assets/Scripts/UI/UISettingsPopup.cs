@@ -8,25 +8,27 @@ namespace BingoRoulette
 {
 	public class UISettingsPopup : MonoBehaviour
 	{
-		[Header("Display Settings")] 
-		[SerializeField] private TMP_Dropdown _displayResolutionDropdown;
+		[Header("Display Settings")] [SerializeField]
+		private TMP_Dropdown _displayResolutionDropdown;
+
 		[SerializeField] private TMP_Dropdown _windowTypeDropdown;
 
-		[Header("Audio Settings")]
-		[Header("Master Volume")]
-		[SerializeField] private Slider _masterVolumeSlider;
+		[Header("Audio Settings")] [Header("Master Volume")] [SerializeField]
+		private Slider _masterVolumeSlider;
+
 		[SerializeField] private TMP_Text _maseterVolumeText;
-		
-		[Header("BGM Volume")]
-		[SerializeField] private Slider _bgmVolumeSlider;
+
+		[Header("BGM Volume")] [SerializeField]
+		private Slider _bgmVolumeSlider;
+
 		[SerializeField] private TMP_Text _bgmVolumeText;
-		
-		[Header("SFX Volume")]
-		[SerializeField] private Slider _sfxVolumeSlider;
+
+		[Header("SFX Volume")] [SerializeField]
+		private Slider _sfxVolumeSlider;
+
 		[SerializeField] private TMP_Text _sfxVolumeText;
-		
-		[Header("UI Volume")]
-		[SerializeField] private Slider _uiVolumeSlider;
+
+		[Header("UI Volume")] [SerializeField] private Slider _uiVolumeSlider;
 		[SerializeField] private TMP_Text _uiVolumeText;
 
 		private Resolution[] _displayResolutions;
@@ -138,30 +140,68 @@ namespace BingoRoulette
 			_bgmVolumeSlider.onValueChanged.AddListener(ChangeBGMVolume);
 			_sfxVolumeSlider.onValueChanged.AddListener(ChangeSFXVolume);
 			_uiVolumeSlider.onValueChanged.AddListener(ChangeUIVolume);
+
+			foreach (var pair in SoundManager.Instance.SoundVolume)
+			{
+				SetVolume(pair.Key, pair.Value);
+
+				switch (pair.Key)
+				{
+					case ESoundType.Master:
+						_masterVolumeSlider.value = pair.Value;
+						break;
+					case ESoundType.BGM:
+						_bgmVolumeSlider.value = pair.Value;
+						break;
+					case ESoundType.SFX:
+						_sfxVolumeSlider.value = pair.Value;
+						break;
+					case ESoundType.UI:
+						_uiVolumeSlider.value = pair.Value;
+						break;
+				}
+			}
 		}
 
 		private void ChangeMasterVolume(float volume)
 		{
-			SoundManager.Instance.SetVolume(ESoundType.Master, volume);
-			_maseterVolumeText.text = $"{(int)(volume * 100f)} / 100";
+			SetVolume(ESoundType.Master, volume);
 		}
-		
+
 		private void ChangeBGMVolume(float volume)
 		{
-			SoundManager.Instance.SetVolume(ESoundType.BGM, volume);
-			_bgmVolumeText.text = $"{(int)(volume * 100f)} / 100";
+			SetVolume(ESoundType.BGM, volume);
 		}
-		
+
 		private void ChangeSFXVolume(float volume)
 		{
-			SoundManager.Instance.SetVolume(ESoundType.SFX, volume);
-			_sfxVolumeText.text = $"{(int)(volume * 100f)} / 100";
+			SetVolume(ESoundType.SFX, volume);
 		}
-		
+
 		private void ChangeUIVolume(float volume)
 		{
-			SoundManager.Instance.SetVolume(ESoundType.UI, volume);
-			_uiVolumeText.text = $"{(int)(volume * 100f)} / 100";
+			SetVolume(ESoundType.UI, volume);
+		}
+
+		private void SetVolume(ESoundType type, float volume)
+		{
+			SoundManager.Instance.SetVolume(type, volume);
+
+			switch (type)
+			{
+				case ESoundType.Master:
+					_maseterVolumeText.text = $"{(int)(volume * 100f)} / 100";
+					break;
+				case ESoundType.BGM:
+					_bgmVolumeText.text = $"{(int)(volume * 100f)} / 100";
+					break;
+				case ESoundType.SFX:
+					_sfxVolumeText.text = $"{(int)(volume * 100f)} / 100";
+					break;
+				case ESoundType.UI:
+					_uiVolumeText.text = $"{(int)(volume * 100f)} / 100";
+					break;
+			}
 		}
 	}
 }
