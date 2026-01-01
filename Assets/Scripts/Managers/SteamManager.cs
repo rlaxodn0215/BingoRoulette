@@ -201,20 +201,14 @@ namespace BingoRoulette
 
 			_uploadResults[type] = uploadResult;
 
-			var uploadTime = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-			var details = new int[]
-			{
-				uploadTime
-			};
-
 			var handle =
 				SteamUserStats.UploadLeaderboardScore(
 					info.Handle,
 					ELeaderboardUploadScoreMethod
 						.k_ELeaderboardUploadScoreMethodKeepBest,
 					value,
-					details,
-					details.Length
+					null,
+					0
 				);
 
 			uploadResult.Set(handle);
