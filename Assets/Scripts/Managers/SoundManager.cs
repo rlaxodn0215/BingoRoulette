@@ -7,15 +7,14 @@ namespace BingoRoulette
 {
 	public class SoundManager : SingletonTemplate<SoundManager>
 	{
-		[Header("Mixer")] 
-		[SerializeField] private AudioMixer _mixer;
+		[Header("Mixer")] [SerializeField] private AudioMixer _mixer;
 
-		[Header("Audio Sources")] 
-		[SerializeField] private AudioSource _bgmPlayer;
+		[Header("Audio Sources")] [SerializeField]
+		private AudioSource _bgmPlayer;
+
 		[SerializeField] private AudioSource _uiPlayer;
 
-		[Header("SFX Pool")] 
-		[SerializeField] private int _sfxPoolSize = 10;
+		[Header("SFX Pool")] [SerializeField] private int _sfxPoolSize = 10;
 
 		private readonly Dictionary<ESound, SoundData> _soundData = new();
 		private readonly Dictionary<ESound, AudioClip> _clipCache = new();
@@ -28,6 +27,11 @@ namespace BingoRoulette
 			LoadSoundData();
 			InitSFXPool();
 			LoadVolume();
+		}
+
+		private void Start()
+		{
+			Play(ESound.BGM_1);
 		}
 
 		public void Play(ESound key)

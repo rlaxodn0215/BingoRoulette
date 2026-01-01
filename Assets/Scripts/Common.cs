@@ -49,4 +49,14 @@ namespace BingoRoulette
 	{
 		Slot,
 	}
+
+	public enum EFeel
+	{
+		Stars,
+		Life,
+		OneLife,
+		Point,
+		Bingo,
+		ClickDeathSlot
+	}
 }

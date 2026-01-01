@@ -45,10 +45,20 @@ namespace BingoRoulette
 			}
 		}
 
-		public void SetDeathSlotActive(bool isActive)
+		public void SetDeathSlotActive(bool isActive, bool isClicked)
 		{
 			_deathSlot.SetActive(isActive);
 			_normalSlotButton.gameObject.SetActive(!isActive);
+
+			var animator = _deathSlot.GetComponent<Animator>();
+			if (isActive && isClicked)
+			{
+				animator.SetTrigger("Highlighted");
+			}
+			else
+			{
+				animator.SetTrigger("Normal");
+			}
 		}
 
 		private void SetSlotColor(ESlotColor color)
