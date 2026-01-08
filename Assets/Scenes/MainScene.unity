@@ -1550,7 +1550,7 @@ MonoBehaviour:
         DebugActive: 0
         AnimatePositionTarget: {fileID: 2862732889942577554}
         DeclaredDuration: 0.2
-        Space: 0
+        Space: 1
         DampingX: 0.2
         FrequencyX: 5
         DampingY: 0.2
