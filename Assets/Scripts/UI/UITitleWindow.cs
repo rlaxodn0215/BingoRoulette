@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,7 +42,9 @@ namespace BingoRoulette
 			if (_isQuitting) return;
 			_isQuitting = true;
 
-			StartCoroutine(QuitFastSafe());
+			Process.GetCurrentProcess().Kill();
+
+			//StartCoroutine(QuitFastSafe());
 		}
 
 		private IEnumerator QuitFastSafe()

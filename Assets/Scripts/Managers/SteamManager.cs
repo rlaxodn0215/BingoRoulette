@@ -72,8 +72,8 @@ namespace BingoRoulette
 
 			Debug.Log("[Steam] PrepareToQuit");
 
-			// 1. 남아있는 Stats 즉시 저장
-			SteamUserStats.StoreStats();
+			// // 1. 남아있는 Stats 즉시 저장
+			// SteamUserStats.StoreStats();
 
 			// 2. 콜백 더 이상 안 돌게
 			IsInitialized = false;
