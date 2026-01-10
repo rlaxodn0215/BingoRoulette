@@ -66,6 +66,22 @@ namespace BingoRoulette
 			}
 		}
 
+		public void PrepareToQuit()
+		{
+			if (!IsInitialized) return;
+
+			Debug.Log("[Steam] PrepareToQuit");
+
+			// 1. 남아있는 Stats 즉시 저장
+			SteamUserStats.StoreStats();
+
+			// 2. 콜백 더 이상 안 돌게
+			IsInitialized = false;
+
+			// 3. Steam 종료
+			SteamAPI.Shutdown();
+		}
+
 		// ===============================
 		// Leaderboard Init
 		// ===============================
